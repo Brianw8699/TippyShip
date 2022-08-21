@@ -10,10 +10,13 @@ public class ShipController : MonoBehaviour
     Rigidbody2D m_Rigidbody;
     public float m_Thrust = 20f;
     public float fuel = 1000f;
+    // private var LeaderboardData;
     public float fuelburn = 100;
     public float maxfuel = 6000;
     public float rotmult = 1;
     public int maxaltscore;
+    int count = 50;
+    int after = 0;
     public Vector3 startposition;
     public Vector2 startvelocity;
     public Button leftButton;
@@ -162,14 +165,39 @@ Main game loop
        {
            resetPosition();
 
-   LootLockerSDKManager.SubmitScore(m_memberID, maxaltscore, 5378, (response) =>
-                    {   
+   LootLockerSDKManager.SubmitScore(m_memberID, maxaltscore, 5378, (response) => {   
                         if (response.statusCode == 200) {
                             Debug.Log("Successful");
                         } else {
                             Debug.Log("failed: " + response.Error);
                         }
                     });
+
+    LootLockerSDKManager.GetScoreList(5378, count, after, (response) =>
+    {
+        if (response.statusCode == 200) {
+
+            Debug.Log("Changes");
+            Debug.Log(response.items);
+
+            // // Array<type>
+            // var leaderboardMembers = data.items;
+            // var top = data.items[0];
+
+            // String topMemberId = top.member_id;
+            // int topScore = top.score;
+            // Debug.Log(topScore)
+
+            // foreach (var member in leaderboardMembers){
+            //     Array.Resize(this.LeaderboardData, LeaderboardData.Length + 1);
+            //     LeaderboardData[LeaderboardData.GetUpperBound(0)] = member;
+            // }
+
+            Debug.Log("Successful");
+        } else {
+            Debug.Log("failed: " + response.Error);
+        }
+    });
        }
 
 
