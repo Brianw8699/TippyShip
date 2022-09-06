@@ -46,36 +46,36 @@ public class CameraController : MonoBehaviour{
 
             //START VELOCITY CAMERA PAN 
             //Moves Camera right if velocity is greater than 3 
-            if (m_Rigidbody.velocity.x > 3 && (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x < 7)){
+            if (m_Rigidbody.velocity.x > 3 && (Offset.x < 7)){
                 //Debug.Log(CameraObject.transform.position.x);
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x += .01f;
-            } else if (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x > 0f) {
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x -= .01f;
+                Offset.x += .01f;
+            } else if (Offset.x > 0f) {
+                Offset.x -= .01f;
                // Debug.Log("Subbing");
             }
 
             //Moves camera left if velocity is less than -3 
-            if (m_Rigidbody.velocity.x < -3 && (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x > -7)){
+            if (m_Rigidbody.velocity.x < -3 && (Offset.x > -7)){
                 //Debug.Log(CameraObject.transform.position.x);
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x -= .01f;
-            } else if (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x < 0f) {
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x += .01f;
+                Offset.x -= .01f;
+            } else if (Offset.x < 0f) {
+                Offset.x += .01f;
                // Debug.Log("Adding");
             }  
 
-            if (m_Rigidbody.velocity.y > 3 && (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y < 7)){
+            if (m_Rigidbody.velocity.y > 3 && (Offset.y < 7)){
                 //Debug.Log(CameraObject.transform.position.x);
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y += .01f;
-            } else if (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y > 0f) {
-            GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y -= .01f;
+                Offset.y += .01f;
+            } else if (Offset.y > 0f) {
+                Offset.y -= .01f;
            // Debug.Log("Adding");
             }
 
-            if (m_Rigidbody.velocity.y < -3 && (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y > -7)){
+            if (m_Rigidbody.velocity.y < -3 && (Offset.y > -7)){
                 //Debug.Log(CameraObject.transform.position.x);
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y -= .01f;
-            } else if (GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y < 0f) {
-                GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y += .01f;
+                Offset.y -= .01f;
+            } else if (Offset.y < 0f) {
+                Offset.y += .01f;
               //  Debug.Log("Adding");
             }
 

@@ -19,12 +19,9 @@ public class ShipController : MonoBehaviour{
     bool isRightButtonPressed;
     bool isLeftButtonPressed;
     public Text fuelAmountDisplay;
-    public Text altitude;
-    public Text maxAltDisplay;
     public Camera cameraObject;
     public UnityEngine.Rendering.Universal.Light2D boosterGlow;
-    public UnityEngine.Rendering.Universal.Light2D refuelLight;
-    public UnityEngine.Rendering.Universal.Light2D boostLight;
+    public UnityEngine.Rendering.Universal.Light2D shipGlow;
     public UnityEngine.Rendering.Universal.Light2D rightHeadlight;
     public UnityEngine.Rendering.Universal.Light2D leftHeadlight;
     public float boosterGlowRotation = 180f;
@@ -32,6 +29,12 @@ public class ShipController : MonoBehaviour{
     public GameObject beaconJournalPrefab;
     public float timePlaced;
     public GameObject parentTest;
+    int i = 0;
+    public int beaconCount = 0;
+    public GameObject mainCamera;
+    public GameObject navigationDisplayCamera;
+    public GameObject uiCanvas;
+    public GameObject navigationDisplayCanvas;
     
 
     void Start(){
@@ -61,8 +64,8 @@ public class ShipController : MonoBehaviour{
     }
 
     public void ResetCamera(){
-        GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.x = 0;
-        GameObject.Find("Main Camera").GetComponent<CameraFollow>().Offset.y = 0;
+        mainCamera.GetComponent<CameraController>().Offset.x = 0;
+        mainCamera.GetComponent<CameraController>().Offset.y = 0;
     }
 
     public void BoostButtonPressed(bool n){
@@ -93,29 +96,22 @@ public class ShipController : MonoBehaviour{
         m_Rigidbody.AddForce(transform.up * thrust);
         yourParticleSystem.Play();
         fuel -= fuelBurn;
+        if (boosterGlow.intensity < 9){
         boosterGlow.intensity += .05f;
+        }
     }    
     void FixedUpdate(){
         fuelAmountDisplay.text = fuel.ToString();
-        altitude.text = (Mathf.FloorToInt(m_Rigidbody.transform.position.y)+4).ToString();
-        maxAltDisplay.text = maxAltScore.ToString();
-
-
-        if (maxAltScore < (Mathf.FloorToInt(m_Rigidbody.transform.position.y)+4)){
-            maxAltScore = (Mathf.FloorToInt(m_Rigidbody.transform.position.y)+4);
-        }
 
         ///////////////
         //Main Controls
         ///////////////
 
-        if ((Input.GetButton("Jump") || isBoostButtonPressed) && fuel > 0){
+        if ((Input.GetButton("Jump") || isBoostButtonPressed || Input.GetKey(KeyCode.W)) && fuel > 0){
             AddThrust();
-            boostLight.intensity = 1;
         }
         else{
             yourParticleSystem.Stop();
-            boostLight.intensity = 0;
             if (boosterGlow.intensity > 0){
                 boosterGlow.intensity -= 0.1f;
             }
@@ -124,13 +120,15 @@ public class ShipController : MonoBehaviour{
 
         if (fuel == 0 && leftHeadlight.intensity > 0 && rightHeadlight.intensity > 0 ){
             leftHeadlight.intensity -= .01f;
-            rightHeadlight.intensity -= .01f;    
+            rightHeadlight.intensity -= .01f;
+            shipGlow.intensity -= .01f;    
         } else if (leftHeadlight.intensity < .7 && rightHeadlight.intensity < .7 && fuel > 100){
             leftHeadlight.intensity += .01f;
             rightHeadlight.intensity += .01f;
+            shipGlow.intensity += .01f;    
         }
 
-        if (Input.GetKey("right") || isRightButtonPressed){
+        if (isRightButtonPressed || Input.GetKey(KeyCode.D)){
            RotateTheShip(1);
            if(boosterGlowRotation <= 190f){
             boosterGlowRotation+= 1f;
@@ -141,7 +139,7 @@ public class ShipController : MonoBehaviour{
            boosterGlowRotation-=.1f;
         }
 
-        if (Input.GetKey("left") || isLeftButtonPressed){
+        if (isLeftButtonPressed || Input.GetKey(KeyCode.A)){
            RotateTheShip(-1);
            if(boosterGlowRotation >= 170f){
            boosterGlowRotation-= 1f;
@@ -151,13 +149,30 @@ public class ShipController : MonoBehaviour{
         }
 
         if (Input.GetKey("down") && (Time.fixedTime - timePlaced > 3)){
-            GameObject beacon1 = Instantiate(beacon, m_Rigidbody.transform.position, Quaternion.identity);
+            i++;
+            GameObject beacon1 = Instantiate(beacon, m_Rigidbody.transform.TransformPoint(new Vector2 (0f, -1.2f)), transform.rotation);
             GameObject beaconJournal = Instantiate(beaconJournalPrefab, new Vector2(m_Rigidbody.transform.position.x, m_Rigidbody.transform.position.y), Quaternion.identity);
+            beacon1.name = "brian" + i;
+            beaconJournal.name = "beaconjournal" + i;
             beaconJournal.transform.SetParent(parentTest.transform);
-            beacon1.GetComponent<Rigidbody2D>().velocity = new Vector2(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y);
+            beacon1.GetComponent<Rigidbody2D>().velocity = m_Rigidbody.GetPointVelocity(transform.TransformPoint(new Vector2 (0f, -3f)));
             Physics2D.IgnoreCollision(beacon1.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
+            beaconCount++;
             timePlaced = Time.fixedTime;
+        }
+
+ 
+        if(Input.GetKey(KeyCode.F) || Input.GetKey("left")){
+           navigationDisplayCanvas.SetActive(true);
+           navigationDisplayCamera.SetActive(true);
+           mainCamera.SetActive(false);
+           uiCanvas.SetActive(false);
+        }
+        else{
+           mainCamera.SetActive(true);
+           uiCanvas.SetActive(true);
+           navigationDisplayCamera.SetActive(false);
+            navigationDisplayCanvas.SetActive(false);
         }
 
 
@@ -179,9 +194,11 @@ public class ShipController : MonoBehaviour{
         //Checks if velocity is between -.01 and .01 and adds fuel (when ship is stationary fuel is added)
         if (m_Rigidbody.velocity.y > -.01 && m_Rigidbody.velocity.y <.01   && fuel < maxFuel){
             fuel+=10;
-            refuelLight.intensity = 1;
-        } else {
-            refuelLight.intensity = 0;
-        }
+        } 
+    
+   
     }
+
+
+ 
 }
