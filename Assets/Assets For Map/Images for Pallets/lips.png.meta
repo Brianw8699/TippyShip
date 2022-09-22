@@ -287,7 +287,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 600
+  spritePixelsToUnits: 590
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -330,6 +330,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
@@ -2035,8 +2059,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       lips_3: 7042592513176925221
-      lips_73: 1893580407440896016
-      lips_42: 9142330092435001637
+      lips_49: 5570673952654005745
+      lips_7: 6774231249099782943
       lips_47: -5205284111283963015
       lips_27: -3410228138027293228
       lips_37: -7029468454385237101
@@ -2067,8 +2091,8 @@ TextureImporter:
       lips_66: -6048640686223236104
       lips_61: 922650397474610332
       lips_25: 933598172536456832
-      lips_43: -6079388699780989443
       lips_23: 1555264341895454992
+      lips_43: -6079388699780989443
       lips_2: -1204040185291366025
       lips_36: 4899632558561561034
       lips_62: 8326033376570246419
@@ -2112,8 +2136,8 @@ TextureImporter:
       lips_44: -5063577007587795286
       lips_67: 1581564793062441867
       lips_34: 7424569135213952058
-      lips_49: 5570673952654005745
-      lips_7: 6774231249099782943
+      lips_73: 1893580407440896016
+      lips_42: 9142330092435001637
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -10,9 +10,16 @@ public class NAVDisplayCanvasController : MonoBehaviour
     public GameObject tiltmeter;
     public GameObject tiltmeterReference;
     public GameObject tiltmeterFlame;
+    public GameObject tippyShip;
+    public GameObject closest;
+    public GameObject closestBeacon;
+    public Vector3 position;
+    public Vector3 mousePosition;
+    public Camera radarCamera;
     public Text maxAltText;
     public Text alt;
     public Text rotationMeter;
+    public float lowestDistance = 10;
     int maxAltScore;
     int angleForText;
 
@@ -41,14 +48,33 @@ public class NAVDisplayCanvasController : MonoBehaviour
         angleForText = -angleForText;
         rotationMeter.text = (angleForText.ToString()) + "°";
         
-         if (maxAltScore < (Mathf.RoundToInt(tiltmeterReference.transform.position.y)+14)){
-            maxAltScore = (Mathf.RoundToInt(tiltmeterReference.transform.position.y)+14);
+        if (maxAltScore < (Mathf.RoundToInt(tiltmeterReference.transform.position.y + 208))){
+            maxAltScore = (Mathf.RoundToInt(tiltmeterReference.transform.position.y + 208));
         }
 
         maxAltText.text = maxAltScore.ToString();
-        alt.text = (Mathf.RoundToInt(tiltmeterReference.transform.position.y) + 14).ToString();
+        alt.text = (Mathf.RoundToInt(tiltmeterReference.transform.position.y + 208)).ToString();
+        mousePosition  = new Vector3 (radarCamera.ScreenToWorldPoint(Input.mousePosition).x - 21f, radarCamera.ScreenToWorldPoint(Input.mousePosition).y + 10f, radarCamera.ScreenToWorldPoint(Input.mousePosition).z);
+        for (int i = 0; i < tippyShip.GetComponent<ShipController>().beaconCount; i++){
+            if (GameObject.Find("beaconjournal" + (i+1))){
+
+                if (Vector3.Distance(GameObject.Find("beaconjournal" + (i+1)).transform.position, mousePosition) < lowestDistance){
+                    lowestDistance = Vector3.Distance(GameObject.Find("beaconjournal" + (i+1)).transform.position, mousePosition);
+                    closest =  GameObject.Find("beaconjournal" + (i+1));
+                    closestBeacon = GameObject.Find("brian" + (i+1));
+                }
+            } else { 
+                Debug.Log("No Game Object Reference - Nav Display Canvas Controller");
+            }
+         
+        }
+            lowestDistance = 10;
 
 
+        if (Input.GetMouseButton(0)){
+            closest.SetActive(false);
+            closestBeacon.SetActive(false);
+        }
 
 
     }

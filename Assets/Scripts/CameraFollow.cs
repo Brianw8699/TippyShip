@@ -16,6 +16,7 @@
 
         for (int i = 0; i < tippyShip.GetComponent<ShipController>().beaconCount; i++)
         {
+            if (GameObject.Find("beaconjournal" + (i+1))){
             Debug.Log(i);
            if (GameObject.Find("beaconjournal" + (i+1)).GetComponent<Renderer>().isVisible){
             Debug.Log("IsVisibileFromScript");
@@ -27,7 +28,9 @@
             allBeaconsVisible = false;
             numberNotVisible ++;
            }
-
+        }else{
+            Debug.Log("hellooo");
+        }
         }
 
         if (numberNotVisible != 0){

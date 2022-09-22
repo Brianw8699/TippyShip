@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour{
             }
             //Subtracts if velocity x and velocity y are less than the camera size
             else if ((Mathf.Abs(m_Rigidbody.velocity.x)+10 < cameraObject.orthographicSize) && (Mathf.Abs(m_Rigidbody.velocity.y)+10 < cameraObject.orthographicSize)) {
-                cameraObject.orthographicSize-=  Mathf.Abs(((Mathf.Abs(m_Rigidbody.velocity.x)+10) - cameraObject.orthographicSize)) / 7;
+                cameraObject.orthographicSize-=  Mathf.Abs(((Mathf.Abs(m_Rigidbody.velocity.x)+10) - cameraObject.orthographicSize)) / 100;
             }
             if  (Mathf.Abs(m_Rigidbody.velocity.y) > 5){
                 if (Mathf.Abs(m_Rigidbody.velocity.y)+10 > cameraObject.orthographicSize){
@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour{
             }
             //Subtracts if velocity x and velocity y are less than the camera size
             else if ((Mathf.Abs(m_Rigidbody.velocity.y)+10 < cameraObject.orthographicSize) && (Mathf.Abs(m_Rigidbody.velocity.x)+10 < cameraObject.orthographicSize)) {
-                cameraObject.orthographicSize-=  Mathf.Abs(((Mathf.Abs(m_Rigidbody.velocity.y)+10) - cameraObject.orthographicSize)) / 7;
+                cameraObject.orthographicSize-=  Mathf.Abs(((Mathf.Abs(m_Rigidbody.velocity.y)+10) - cameraObject.orthographicSize)) / 100;
             }
             //END VELOCITY CAMERA ZOOM
 

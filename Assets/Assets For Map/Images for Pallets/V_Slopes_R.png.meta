@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 600
+  spritePixelsToUnits: 590
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -94,6 +94,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -3643,10 +3655,10 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       V_Slopes_R_10: 1550786472
-      V_Slopes_R_119: -2043899350
-      V_Slopes_R_54: -1922408289
+      V_Slopes_R_120: 860717626
       V_Slopes_R_84: -847491190
       V_Slopes_R_94: -637721118
+      V_Slopes_R_49: -1481902117
       V_Slopes_R_136: 1491046663
       V_Slopes_R_127: 631290204
       V_Slopes_R_137: 83567825
@@ -3797,18 +3809,18 @@ TextureImporter:
       V_Slopes_R_167: -365637629
       V_Slopes_R_16: 1913658532
       V_Slopes_R_153: -1971194623
-      V_Slopes_R_5: -642905221
+      V_Slopes_R_126: 473484736
       V_Slopes_R_144: 298866129
-      V_Slopes_R_77: -127194463
+      V_Slopes_R_5: -642905221
       V_Slopes_R_20: 114349221
       V_Slopes_R_55: -920801222
+      V_Slopes_R_77: -127194463
       V_Slopes_R_123: 584609674
-      V_Slopes_R_126: 473484736
-      V_Slopes_R_48: 432628307
       V_Slopes_R_107: -1989785074
+      V_Slopes_R_48: 432628307
+      V_Slopes_R_54: -1922408289
       V_Slopes_R_100: 827701923
-      V_Slopes_R_49: -1481902117
-      V_Slopes_R_120: 860717626
+      V_Slopes_R_119: -2043899350
       V_Slopes_R_37: 484453076
   spritePackingTag: 
   pSDRemoveMatte: 0

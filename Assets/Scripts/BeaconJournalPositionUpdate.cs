@@ -21,7 +21,7 @@ public class BeaconJournalPositionUpdate : MonoBehaviour
 
     void updatePosition()
     {
-  transform.position = new Vector2 (GameObject.Find("brian"+oy).transform.position.x, GameObject.Find("brian"+oy).transform.position.y - 1219);
+  transform.position = new Vector2 (GameObject.Find("brian"+oy).transform.position.x, GameObject.Find("brian"+oy).transform.position.y - 2000);
     }
 
 }

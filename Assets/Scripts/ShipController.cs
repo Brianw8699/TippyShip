@@ -128,7 +128,7 @@ public class ShipController : MonoBehaviour{
             shipGlow.intensity += .01f;    
         }
 
-        if (isRightButtonPressed || Input.GetKey(KeyCode.D)){
+        if (isRightButtonPressed || Input.GetKey(KeyCode.D) ||Input.GetKey("right") ){
            RotateTheShip(1);
            if(boosterGlowRotation <= 190f){
             boosterGlowRotation+= 1f;
@@ -139,7 +139,7 @@ public class ShipController : MonoBehaviour{
            boosterGlowRotation-=.1f;
         }
 
-        if (isLeftButtonPressed || Input.GetKey(KeyCode.A)){
+        if (Input.GetKey("left") || isLeftButtonPressed || Input.GetKey(KeyCode.A)){
            RotateTheShip(-1);
            if(boosterGlowRotation >= 170f){
            boosterGlowRotation-= 1f;
@@ -162,7 +162,7 @@ public class ShipController : MonoBehaviour{
         }
 
  
-        if(Input.GetKey(KeyCode.F) || Input.GetKey("left")){
+        if(Input.GetKey(KeyCode.F)){
            navigationDisplayCanvas.SetActive(true);
            navigationDisplayCamera.SetActive(true);
            mainCamera.SetActive(false);
